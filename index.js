@@ -47,6 +47,10 @@ app.get('/youtube-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/youtube-stalk.html');
 });
 
+app.get('/npm-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/npm-stalk.html');
+});
+
 app.get('/whatsapp-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/whatsapp-stalk.html');
 });
