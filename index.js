@@ -10,7 +10,7 @@ app.use(express.static('public'));
 
 // Routes
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/dasboard.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/yt', (req, res) => {
