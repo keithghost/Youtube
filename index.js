@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/download', (req, res) => {
+  res.sendFile(__dirname + '/public/download.html');
+});
 app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
 });
