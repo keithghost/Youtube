@@ -39,6 +39,9 @@ app.get('/yt', (req, res) => {
 app.get('/tiktokstalk', (req, res) => {
   res.sendFile(__dirname + '/public/tiktokstalk.html');
 });
+app.get('/twitter-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/twitter-stalk.html');
+});
 
 app.get('/whatsapp-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/whatsapp-stalk.html');
