@@ -85,6 +85,9 @@ app.get('/unbase64', (req, res) => {
   res.sendFile(__dirname + '/public/unbase64.html');
 });
 
+app.get('/run-py', (req, res) => {
+  res.sendFile(__dirname + '/public/run-py.html');
+});
 
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
