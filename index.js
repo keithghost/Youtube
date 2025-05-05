@@ -27,6 +27,9 @@ app.get('/tiktokstalk', (req, res) => {
 app.get('/gpt', (req, res) => {
   res.sendFile(__dirname + '/public/gpt.html');
 });
+app.get('/ai', (req, res) => {
+  res.sendFile(__dirname + '/public/ai.html');
+});
 
 app.get('/tiktok', (req, res) => {
   res.sendFile(__dirname + '/public/tiktok.html');
