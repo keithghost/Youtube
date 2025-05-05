@@ -1,4 +1,4 @@
-require('dotenv').config();
+requires ('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -18,7 +18,7 @@ app.use('/api/youtube', youtubeRouter);
 
 // Homepage
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/yt.html');
 });
 
 // Start server
