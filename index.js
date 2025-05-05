@@ -23,6 +23,9 @@ app.get('/coding', (req, res) => {
 app.get('/stalker', (req, res) => {
   res.sendFile(__dirname + '/public/stalker.html');
 });
+app.get('/search', (req, res) => {
+  res.sendFile(__dirname + '/public/search.html');
+});
 
 app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
