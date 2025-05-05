@@ -17,6 +17,10 @@ app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
 });
 
+app.get('/tiktokstalk', (req, res) => {
+  res.sendFile(__dirname + '/public/tiktokstalk.html');
+});
+
 app.get('/gpt', (req, res) => {
   res.sendFile(__dirname + '/public/gpt.html');
 });
