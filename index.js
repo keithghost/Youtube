@@ -72,6 +72,11 @@ app.get('/country-info-stalk', (req, res) => {
 app.get('/gpt', (req, res) => {
   res.sendFile(__dirname + '/public/gpt.html');
 });
+
+app.get('/encrypt', (req, res) => {
+  res.sendFile(__dirname + '/public/encrypt.html');
+});
+
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
