@@ -53,6 +53,9 @@ app.get('/whatsapp-stalk', (req, res) => {
 app.get('/github-repo-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/github-repo-stalk.html');
 });
+app.get('/country-info-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/country-info-stalk.html');
+});
 app.get('/gpt', (req, res) => {
   res.sendFile(__dirname + '/public/gpt.html');
 });
