@@ -70,36 +70,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // TikTok Download
-  document.getElementById('tiktok-download').addEventListener('click', async () => {
-    const url = document.getElementById('tiktok-url').value.trim();
-    if (!url) return alert('Please enter a TikTok URL');
+  // TikTok Download
+document.getElementById('tiktok-download').addEventListener('click', async () => {
+  const url = document.getElementById('tiktok-url').value.trim();
+  if (!url) return alert('Please enter a TikTok URL');
+  
+  try {
+    const response = await fetch(`/api/tiktok/dl?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
     
-    try {
-      const response = await fetch(`/api/tiktok/dl?url=${encodeURIComponent(url)}`);
-      const data = await response.json();
-      
-      if (data.status) {
-        const result = data.result;
-        const resultsDiv = document.getElementById('tiktok-results');
-        resultsDiv.innerHTML = `
-          <div class="result-item">
-            <img src="${result.thumbnail}" width="200">
-            <h3>${result.title}</h3>
-            <p>${result.caption}</p>
-            <a href="${result.nowm}" class="download-btn">Download Video</a>
-            <a href="${result.mp3}" class="download-btn">Download Audio</a>
-          </div>
-        `;
-      } else {
-        alert('Error: ' + (data.message || 'Failed to process TikTok URL'));
-      }
-    } catch (error) {
-      console.error(error);
-      alert('An error occurred while processing your request');
+    if (data.status) {
+      const result = data.result;
+      const resultsDiv = document.getElementById('tiktok-results');
+      resultsDiv.innerHTML = `
+        <div class="result-item">
+          <img src="${result.thumbnail}" width="200">
+          <h3>${result.title}</h3>
+          <p>${result.caption}</p>
+          <a href="${result.nowm}" class="download-btn">Download SD</a>
+          ${result.hd ? `<a href="${result.hd}" class="download-btn">Download HD</a>` : ''}
+          ${result.mp3 ? `<a href="${result.mp3}" class="download-btn">Download Audio</a>` : ''}
+        </div>
+      `;
+    } else {
+      alert('Error: ' + (data.message || 'Failed to process TikTok URL'));
     }
-  });
+  } catch (error) {
+    console.error(error);
+    alert('An error occurred while processing your request');
+  }
 });
-
 // Helper function for YouTube search results
 function useYouTubeUrl(url) {
   document.getElementById('youtube-url').value = url;
