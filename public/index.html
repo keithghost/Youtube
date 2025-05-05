@@ -3,38 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Downloader</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Media Tools</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+    }
+    
+    .navbar {
+      background-color: #ff0000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .welcome {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .welcome h1 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
+    .welcome p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .tools {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .tool-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .tool-card h2 {
+      color: #ff0000;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tool-card p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #ff0000;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: #cc0000;
+    }
+  </style>
 </head>
 <body>
+  <nav class="navbar">
+    <a href="/" class="logo">Media Tools</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/yt">YouTube Downloader</a>
+    </div>
+  </nav>
+  
   <div class="container">
-    <h1>Media Downloader</h1>
-    
-    <div class="tabs">
-      <button class="tab active" data-tab="youtube">YouTube</button>
-      <button class="tab" data-tab="tiktok">TikTok</button>
+    <div class="welcome">
+      <h1>Welcome to Media Tools</h1>
+      <p>Download and manage your media files with our simple tools</p>
     </div>
     
-    <div id="youtube" class="tab-content active">
-      <h2>YouTube Downloader</h2>
-      <div class="input-group">
-        <input type="text" id="youtube-url" placeholder="Enter YouTube URL or search term">
-        <button id="youtube-download">Download</button>
-        <button id="youtube-search">Search</button>
+    <div class="tools">
+      <div class="tool-card">
+        <h2>YouTube Downloader</h2>
+        <p>Download videos or audio from YouTube in various formats</p>
+        <a href="/yt" class="btn">Go to Tool</a>
       </div>
-      <div id="youtube-results" class="results"></div>
-    </div>
-    
-    <div id="tiktok" class="tab-content">
-      <h2>TikTok Downloader</h2>
-      <div class="input-group">
-        <input type="text" id="tiktok-url" placeholder="Enter TikTok URL">
-        <button id="tiktok-download">Download</button>
+      
+      <div class="tool-card">
+        <h2>More Coming Soon</h2>
+        <p>We're working on adding more useful tools</p>
+        <a href="#" class="btn" style="background: #999; cursor: not-allowed;">Coming Soon</a>
       </div>
-      <div id="tiktok-results" class="results"></div>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
