@@ -43,6 +43,9 @@ app.get('/tiktokstalk', (req, res) => {
 app.get('/whatsapp-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/whatsapp-stalk.html');
 });
+app.get('/github-repo-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/github-repo-stalk.html');
+});
 app.get('/gpt', (req, res) => {
   res.sendFile(__dirname + '/public/gpt.html');
 });
