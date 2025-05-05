@@ -23,6 +23,11 @@ app.get('/coding', (req, res) => {
 app.get('/stalker', (req, res) => {
   res.sendFile(__dirname + '/public/stalker.html');
 });
+
+app.get('/sports', (req, res) => {
+  res.sendFile(__dirname + '/public/sports.html');
+});
+
 app.get('/search', (req, res) => {
   res.sendFile(__dirname + '/public/search.html');
 });
