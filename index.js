@@ -77,6 +77,15 @@ app.get('/encrypt', (req, res) => {
   res.sendFile(__dirname + '/public/encrypt.html');
 });
 
+app.get('/base64', (req, res) => {
+  res.sendFile(__dirname + '/public/base64.html');
+});
+
+app.get('/unbase64', (req, res) => {
+  res.sendFile(__dirname + '/public/unbase64.html');
+});
+
+
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
 });
