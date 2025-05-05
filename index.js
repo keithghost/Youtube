@@ -97,6 +97,10 @@ app.get('/binary', (req, res) => {
   res.sendFile(__dirname + '/public/binary.html');
 });
 
+app.get('/dbinary', (req, res) => {
+  res.sendFile(__dirname + '/public/dbinary.html');
+});
+
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
 });
