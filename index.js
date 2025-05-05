@@ -51,6 +51,10 @@ app.get('/npm-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/npm-stalk.html');
 });
 
+app.get('/ip-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/ip-stalk.html');
+});
+
 app.get('/whatsapp-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/whatsapp-stalk.html');
 });
