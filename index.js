@@ -19,6 +19,11 @@ app.get('/download', (req, res) => {
 app.get('/coding', (req, res) => {
   res.sendFile(__dirname + '/public/coding.html');
 });
+
+app.get('/stalker', (req, res) => {
+  res.sendFile(__dirname + '/public/stalker.html');
+});
+
 app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
 });
