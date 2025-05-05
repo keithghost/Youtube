@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { TikTokScraper } = require('tiktok-scraper');
+const axios = require('axios');
 
-// TikTok Download
+// TikTok Download using external API
 router.get('/dl', async (req, res) => {
   try {
     const url = req.query.url;
@@ -13,23 +13,26 @@ router.get('/dl', async (req, res) => {
       });
     }
 
-    const video = await TikTokScraper.getVideoMeta(url, { 
-      sessionList: ['sid_tt=YOUR_SESSION_ID'] // Optional session ID
-    });
+    // Call the external API
+    const apiUrl = `https://apis-keith.vercel.app/download/tiktokdl?url=${encodeURIComponent(url)}`;
+    const response = await axios.get(apiUrl);
+    const data = response.data;
 
-    const response = {
+    // Format the response
+    const result = {
       status: true,
-      creator: "Your Name",
+      creator: "Your Name", // Change to your name
       result: {
-        title: video.collector[0].text,
-        caption: video.collector[0].text,
-        nowm: video.collector[0].downloadUrl,
-        mp3: video.collector[0].musicMeta.playUrl,
-        thumbnail: video.collector[0].imageUrl
+        title: data.result.desc || 'No description',
+        caption: data.result.desc || '',
+        nowm: data.result.video_sd,
+        hd: data.result.video_hd,
+        mp3: data.result.audio,
+        thumbnail: data.result.thumb
       }
     };
 
-    res.json(response);
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({
