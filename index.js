@@ -43,6 +43,10 @@ app.get('/twitter-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/twitter-stalk.html');
 });
 
+app.get('/youtube-stalk', (req, res) => {
+  res.sendFile(__dirname + '/public/youtube-stalk.html');
+});
+
 app.get('/whatsapp-stalk', (req, res) => {
   res.sendFile(__dirname + '/public/whatsapp-stalk.html');
 });
