@@ -17,6 +17,10 @@ app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
 });
 
+app.get('/yt', (req, res) => {
+  res.sendFile(__dirname + '/public/tiktok.html');
+});
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
