@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEITH COMMAND CENTER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --accent: #fd79a8;
+            --dark: #1e272e;
+            --darker: #0c0f14;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #130f40 0%, #0c0f14 90%);
+            color: var(--light);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+        
+        body.light-mode {
+            background: radial-gradient(circle at 10% 20%, #e0e5ec 0%, #f5f7fa 90%);
+            color: var(--dark);
+        }
+        
+        .premium-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .light-mode .premium-container {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .premium-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(108, 92, 231, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: rotate 60s linear infinite;
+        }
+        
+        .light-mode .premium-container::before {
+            background: radial-gradient(circle at 70% 30%, rgba(108, 92, 231, 0.05) 0%, transparent 50%);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .premium-header {
+            padding: 20px 25px;
+            background: linear-gradient(90deg, rgba(108, 92, 231, 0.8) 0%, rgba(0, 206, 201, 0.8) 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .light-mode .premium-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .premium-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .greeting {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .datetime {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .system-info {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .menu-title {
+            padding: 18px 25px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 39, 46, 0.5);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .light-mode .menu-title {
+            background: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+        }
+        
+        .menu-title::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), transparent);
+            opacity: 0.5;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 25px;
+        }
+        
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .light-mode .menu-item {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .light-mode .menu-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            z-index: 0;
+        }
+        
+        .light-mode .menu-item::before {
+            background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.02), transparent);
+        }
+        
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover::after {
+            opacity: 1;
+        }
+        
+        .menu-item-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .item-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+            transition: var(--transition);
+        }
+        
+        .light-mode .item-icon {
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+        }
+        
+        .item-name {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+        }
+        
+        .light-mode .item-name {
+            color: var(--dark);
+        }
+        
+        .item-desc {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.5;
+            flex-grow: 1;
+            transition: var(--transition);
+        }
+        
+        .light-mode .item-desc {
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .premium-footer {
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            background: rgba(30, 39, 46, 0.5);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .light-mode .premium-footer {
+            background: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+        }
+        
+        .premium-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+        
+        .light-mode .premium-footer::before {
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .light-mode .status-indicator {
+            color: var(--primary-dark);
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--secondary);
+        }
+        
+        .light-mode .status-dot {
+            background: var(--primary-dark);
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-mode .theme-toggle {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .light-mode .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Search command item */
+        .search-command {
+            grid-column: span 1;
+        }
+        
+        /* Download command item */
+        .download-command .item-icon {
+            background: linear-gradient(135deg, var(--success) 0%, var(--secondary) 100%);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .premium-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .system-info {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+            
+            .menu-item {
+                padding: 18px;
+            }
+            
+            .premium-header, .menu-title, .premium-footer {
+                padding: 15px;
+            }
+        }
+        
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .light-mode .particle {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .light-mode ::-webkit-scrollbar-thumb {
+            background: var(--primary-dark);
+        }
+        
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Premium badge */
+        .premium-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, var(--warning) 0%, var(--accent) 100%);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(253, 203, 110, 0.3);
+        }
+        
+        .light-mode .premium-badge {
+            box-shadow: 0 2px 8px rgba(253, 203, 110, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="premium-container">
+        <div class="premium-header">
+            <div class="header-info">
+                <div class="greeting" id="greeting">Welcome</div>
+                <div class="datetime" id="datetime">Loading...</div>
+            </div>
+            <div class="system-info">
+                <!-- Removed IP address as requested -->
+            </div>
+        </div>
+        
+        <div class="menu-title">
+            <div class="logo-icon">K</div>
+            KEITH COMMAND CENTER
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item" onclick="window.location.href='/ai'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div class="item-name">AI TOOLS</div>
+                        <div class="item-desc">Advanced artificial intelligence and machine learning tools</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item" onclick="window.location.href='/coding'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-code"></i></div>
+                    <div>
+                        <div class="item-name">CODING</div>
+                        <div class="item-desc">Developer tools, compilers and programming utilities</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item search-command" onclick="window.location.href='/search'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-search"></i></div>
+                    <div>
+                        <div class="item-name">SEARCH</div>
+                        <div class="item-desc">Search across all systems and databases</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item download-command" onclick="window.location.href='/download'">
+                <div class="premium-badge">Premium</div>
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-download"></i></div>
+                    <div>
+                        <div class="item-name">DOWNLOAD</div>
+                        <div class="item-desc">High-speed download manager</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item" onclick="window.location.href='/sports'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-running"></i></div>
+                    <div>
+                        <div class="item-name">SPORTS</div>
+                        <div class="item-desc">Live scores, statistics and analysis tools</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item" onclick="window.location.href='/stalker'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-user-secret"></i></div>
+                    <div>
+                        <div class="item-name">STALKER</div>
+                        <div class="item-desc">Advanced tracking and monitoring systems</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item" onclick="window.location.href='/movie'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-film"></i></div>
+                    <div>
+                        <div class="item-name">MOVIE</div>
+                        <div class="item-desc">Cinematic tools and video processing</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item" onclick="window.location.href='/converter'">
+                <div class="menu-item-content">
+                    <div class="item-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <div>
+                        <div class="item-name">CONVERTER</div>
+                        <div class="item-desc">File format conversion and transformation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="premium-footer">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>PREMIUM SYSTEM ACTIVE</span>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Update greeting based on time of day
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            let greeting;
+            
+            if (hour < 12) {
+                greeting = "Good Morning";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+            
+            document.getElementById('greeting').textContent = greeting;
+        }
+        
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            document.getElementById('datetime').textContent = now.toLocaleDateString('en-US', options);
+        }
+        
+        // Theme toggle with localStorage support
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            
+            const icon = document.querySelector('#theme-toggle i');
+            const text = document.querySelector('#theme-toggle span');
+            
+            if (document.body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                text.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                text.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Check for saved theme preference
+        function checkTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                document.querySelector('#theme-toggle i').classList.remove('fa-moon');
+                document.querySelector('#theme-toggle i').classList.add('fa-sun');
+                document.querySelector('#theme-toggle span').textContent = 'Light Mode';
+            }
+        }
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const opacity = Math.random() * 0.5 + 0.1;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * -20;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.opacity = opacity;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                // Add to container
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(0) translateX(0); opacity: 1; }
+                    50% { transform: translateY(-100px) translateX(20px); opacity: 0.5; }
+                    100% { transform: translateY(-200px) translateX(0); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Add ripple effect to menu items
+        function addRippleEffect() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+        
+        // Initialize all functions
+        function init() {
+            updateGreeting();
+            updateDateTime();
+            createParticles();
+            addRippleEffect();
+            checkTheme();
+            
+            // Set up theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Update time every minute
+            setInterval(updateDateTime, 60000);
+        }
+        
+        // Run when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
