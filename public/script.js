@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // TikTok Download
   // TikTok Download
-document.getElementById('tiktok-download').addEventListener('click', async () => {
+/*document.getElementById('tiktok-download').addEventListener('click', async () => {
   const url = document.getElementById('tiktok-url').value.trim();
   if (!url) return alert('Please enter a TikTok URL');
   
@@ -99,7 +99,7 @@ document.getElementById('tiktok-download').addEventListener('click', async () =>
     console.error(error);
     alert('An error occurred while processing your request');
   }
-});
+});*/
 // Helper function for YouTube search results
 function useYouTubeUrl(url) {
   document.getElementById('youtube-url').value = url;
