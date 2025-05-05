@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Downloader</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Media Downloader</h1>
+    
+    <div class="tabs">
+      <button class="tab active" data-tab="youtube">YouTube</button>
+      <button class="tab" data-tab="tiktok">TikTok</button>
+    </div>
+    
+    <div id="youtube" class="tab-content active">
+      <h2>YouTube Downloader</h2>
+      <div class="input-group">
+        <input type="text" id="youtube-url" placeholder="Enter YouTube URL or search term">
+        <button id="youtube-download">Download</button>
+        <button id="youtube-search">Search</button>
+      </div>
+      <div id="youtube-results" class="results"></div>
+    </div>
+    
+    <div id="tiktok" class="tab-content">
+      <h2>TikTok Downloader</h2>
+      <div class="input-group">
+        <input type="text" id="tiktok-url" placeholder="Enter TikTok URL">
+        <button id="tiktok-download">Download</button>
+      </div>
+      <div id="tiktok-results" class="results"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
