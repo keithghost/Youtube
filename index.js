@@ -104,6 +104,9 @@ app.get('/dbinary', (req, res) => {
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
 });
+app.get('/standings', (req, res) => {
+  res.sendFile(__dirname + '/public/standings.html');
+});
 
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
