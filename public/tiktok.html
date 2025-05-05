@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Downloader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #25F4EE;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .search-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group:focus-within {
+            border-color: #25F4EE;
+            box-shadow: 0 0 0 3px rgba(37, 244, 238, 0.2);
+        }
+        
+        #tiktok-url {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        #download-btn {
+            background: linear-gradient(to right, #25F4EE, #FE2C55);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        #download-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .result-container {
+            background: white;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        
+        .video-preview {
+            display: flex;
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .thumbnail-container {
+            width: 250px;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-info {
+            padding-left: 25px;
+            flex: 1;
+        }
+        
+        .video-info h2 {
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .meta-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #555;
+            width: 100px;
+            flex-shrink: 0;
+        }
+        
+        .meta-value {
+            color: #333;
+        }
+        
+        .download-section {
+            padding: 25px;
+        }
+        
+        .download-section h3 {
+            margin-bottom: 20px;
+            color: #25F4EE;
+            font-size: 1.3rem;
+        }
+        
+        .download-options {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .download-card {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .download-card h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #25F4EE, #FE2C55);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(37, 244, 238, 0.2);
+            border-top: 4px solid #25F4EE;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TikTok Downloader</h1>
+            <p class="subtitle">Download videos without watermark and extract audio</p>
+        </header>
+        
+        <div class="search-container">
+            <div class="input-group">
+                <input type="text" id="tiktok-url" placeholder="Paste TikTok URL here...">
+                <button id="download-btn">Process</button>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing your TikTok link...</p>
+        </div>
+        
+        <div class="result-container" id="result">
+            <div class="video-preview">
+                <div class="thumbnail-container">
+                    <img id="thumbnail" class="thumbnail" src="">
+                </div>
+                
+                <div class="video-info">
+                    <h2 id="video-title"></h2>
+                    
+                    <div class="meta-item">
+                        <span class="meta-label">Creator:</span>
+                        <span class="meta-value" id="creator"></span>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <span class="meta-label">Caption:</span>
+                        <span class="meta-value" id="caption"></span>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <span class="meta-label">Duration:</span>
+                        <span class="meta-value" id="duration"></span>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <span class="meta-label">Uploaded:</span>
+                        <span class="meta-value" id="uploaded"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-section">
+                <h3>Download Options</h3>
+                
+                <div class="download-options">
+                    <div class="download-card">
+                        <h4>Video (No Watermark)</h4>
+                        <p>High quality video without TikTok watermark</p>
+                        <a href="#" id="video-download" class="download-btn">Download Video</a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <h4>Audio (MP3)</h4>
+                        <p>Extract just the audio from the video</p>
+                        <a href="#" id="audio-download" class="download-btn">Download Audio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', fetchTikTok);
+        document.getElementById('tiktok-url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') fetchTikTok();
+        });
+
+        async function fetchTikTok() {
+            const url = document.getElementById('tiktok-url').value.trim();
+            if (!url) return alert('Please enter a TikTok URL');
+            
+            try {
+                // Show loading state
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('result').style.display = 'none';
+                document.getElementById('download-btn').disabled = true;
+                
+                const apiUrl = `https://apis-keith.vercel.app/download/tiktokdl?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.status) {
+                    displayResult(data);
+                } else {
+                    throw new Error(data.message || 'Failed to fetch TikTok data');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('download-btn').disabled = false;
+            }
+        }
+
+        function displayResult(data) {
+            const result = data.result;
+            
+            // Set video info
+            document.getElementById('video-title').textContent = result.title || 'Untitled';
+            document.getElementById('creator').textContent = data.creator || 'Unknown';
+            document.getElementById('caption').textContent = result.caption || 'No caption';
+            document.getElementById('thumbnail').src = result.thumbnail || 'placeholder.jpg';
+            
+            // Set download links
+            document.getElementById('video-download').href = result.nowm;
+            document.getElementById('audio-download').href = result.mp3;
+            
+            // Show result
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
