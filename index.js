@@ -93,6 +93,10 @@ app.get('/run-py', (req, res) => {
   res.sendFile(__dirname + '/public/run-py.html');
 });
 
+app.get('/binary', (req, res) => {
+  res.sendFile(__dirname + '/public/binary.html');
+});
+
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
 });
