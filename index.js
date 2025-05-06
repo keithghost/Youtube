@@ -180,6 +180,9 @@ app.get('/cricket', (req, res) => {
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
+app.get('/vision', (req, res) => {
+  res.sendFile(__dirname + '/public/vision.html');
+});
 
 app.get('/tiktok', (req, res) => {
   res.sendFile(__dirname + '/public/tiktok.html');
