@@ -104,6 +104,10 @@ app.get('/dbinary', (req, res) => {
 app.get('/web-extract', (req, res) => {
   res.sendFile(__dirname + '/public/web-extract.html');
 });
+
+app.get('/top-scorers', (req, res) => {
+  res.sendFile(__dirname + '/public/top-scorers.html');
+});
 app.get('/standings', (req, res) => {
   res.sendFile(__dirname + '/public/standings.html');
 });
