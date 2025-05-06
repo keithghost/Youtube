@@ -115,7 +115,9 @@ app.get('/standings', (req, res) => {
 app.get('/venue-search', (req, res) => {
   res.sendFile(__dirname + '/public/venue-search.html');
 });
-
+app.get('/player-search', (req, res) => {
+  res.sendFile(__dirname + '/public/player-search.html');
+});
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
