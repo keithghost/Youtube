@@ -122,6 +122,11 @@ app.get('/team-search', (req, res) => {
   res.sendFile(__dirname + '/public/team-search.html');
 });
 
+app.get('/cricket', (req, res) => {
+  res.sendFile(__dirname + '/public/cricket.html');
+});
+               
+
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
