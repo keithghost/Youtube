@@ -111,6 +111,9 @@ app.get('/top-scorers', (req, res) => {
 app.get('/standings', (req, res) => {
   res.sendFile(__dirname + '/public/standings.html');
 });
+app.get('/matches', (req, res) => {
+  res.sendFile(__dirname + '/public/matches.html');
+});
 
 app.get('/upcoming-matches', (req, res) => {
   res.sendFile(__dirname + '/public/upcoming-matches.html');
