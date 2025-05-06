@@ -118,6 +118,10 @@ app.get('/venue-search', (req, res) => {
 app.get('/player-search', (req, res) => {
   res.sendFile(__dirname + '/public/player-search.html');
 });
+app.get('/team-search', (req, res) => {
+  res.sendFile(__dirname + '/public/team-search.html');
+});
+
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
