@@ -112,6 +112,10 @@ app.get('/standings', (req, res) => {
   res.sendFile(__dirname + '/public/standings.html');
 });
 
+app.get('/venue-search', (req, res) => {
+  res.sendFile(__dirname + '/public/venue-search.html');
+});
+
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
