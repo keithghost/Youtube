@@ -2,50 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const multer = require('multer');
 const axios = require('axios');
-const FormData = require('form-data');
-const fs = require('fs');
-const path = require('path');
-const upload = multer({ dest: 'uploads/' });
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-// Proxy endpoint to upload to Catbox
-app.post('/upload', upload.single('image'), async (req, res) => {
-    try {
-        if (!req.file) {
-            return res.status(400).json({ error: 'No image provided' });
-        }
-
-        // Read the uploaded file
-        const fileStream = fs.createReadStream(req.file.path);
-        
-        // Prepare form data for Catbox
-        const formData = new FormData();
-        formData.append('reqtype', 'fileupload');
-        formData.append('userhash', '');
-        formData.append('fileToUpload', fileStream);
-
-        // Upload to Catbox
-        const catboxResponse = await axios.post('https://catbox.moe/user/api.php', formData, {
-            headers: formData.getHeaders()
-        });
-
-        // Clean up the uploaded file
-        fs.unlinkSync(req.file.path);
-
-        if (catboxResponse.status === 200 && catboxResponse.data.startsWith('http')) {
-            return res.json({ url: catboxResponse.data });
-        } else {
-            throw new Error('Failed to upload to Catbox');
-        }
-    } catch (error) {
-        console.error('Upload error:', error);
-        res.status(500).json({ error: 'Failed to process image' });
-    }
-});
 
 // Routes
 app.get('/', (req, res) => {
