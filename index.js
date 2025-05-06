@@ -112,6 +112,10 @@ app.get('/standings', (req, res) => {
   res.sendFile(__dirname + '/public/standings.html');
 });
 
+app.get('/upcoming-matches', (req, res) => {
+  res.sendFile(__dirname + '/public/upcoming-matches.html');
+});
+
 app.get('/venue-search', (req, res) => {
   res.sendFile(__dirname + '/public/venue-search.html');
 });
