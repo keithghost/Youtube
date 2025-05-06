@@ -142,6 +142,9 @@ app.get('/cricket', (req, res) => {
 app.get('/ai', (req, res) => {
   res.sendFile(__dirname + '/public/ai.html');
 });
+app.get('/metai', (req, res) => {
+  res.sendFile(__dirname + '/public/metai.html');
+});
 app.get('/deepseek', (req, res) => {
   res.sendFile(__dirname + '/public/deepseek.html');
 });
