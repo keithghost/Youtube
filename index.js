@@ -163,6 +163,10 @@ app.get('/spotify', (req, res) => {
   res.sendFile(__dirname + '/public/spotify.html');
 });
 
+app.get('/soundcloud', (req, res) => {
+  res.sendFile(__dirname + '/public/soundcloud.html');
+});
+
 app.get('/play', (req, res) => {
   res.sendFile(__dirname + '/public/play.html');
 });
