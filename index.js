@@ -161,6 +161,11 @@ app.get('/play', (req, res) => {
 app.get('/instagram', (req, res) => {
   res.sendFile(__dirname + '/public/instagram.html');
 });
+
+app.get('/facebook', (req, res) => {
+  res.sendFile(__dirname + '/public/facebook.html');
+});
+
 app.get('/video', (req, res) => {
   res.sendFile(__dirname + '/public/video.html');
 });
