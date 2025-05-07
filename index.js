@@ -22,6 +22,10 @@ app.get('/bible', (req, res) => {
   res.sendFile(__dirname + '/public/bible.html');
 });
 
+app.get('/randombible', (req, res) => {
+  res.sendFile(__dirname + '/public/randombible.html');
+});
+
 app.get('/coding', (req, res) => {
   res.sendFile(__dirname + '/public/coding.html');
 });
