@@ -33,6 +33,10 @@ app.get('/search', (req, res) => {
   res.sendFile(__dirname + '/public/search.html');
 });
 
+app.get('/lyrics', (req, res) => {
+  res.sendFile(__dirname + '/public/lyrics.html');
+});
+
 app.get('/yt', (req, res) => {
   res.sendFile(__dirname + '/public/yt.html');
 });
@@ -153,6 +157,10 @@ app.get('/vision', (req, res) => {
 });
 app.get('/ytmp4', (req, res) => {
   res.sendFile(__dirname + '/public/ytmp4.html');
+});
+
+app.get('/spotify', (req, res) => {
+  res.sendFile(__dirname + '/public/spotify.html');
 });
 
 app.get('/play', (req, res) => {
