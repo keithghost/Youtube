@@ -151,6 +151,16 @@ app.get('/deepseek', (req, res) => {
 app.get('/vision', (req, res) => {
   res.sendFile(__dirname + '/public/vision.html');
 });
+app.get('/ytmp4', (req, res) => {
+  res.sendFile(__dirname + '/public/ytmp4.html');
+});
+
+app.get('/play', (req, res) => {
+  res.sendFile(__dirname + '/public/play.html');
+});
+app.get('/video', (req, res) => {
+  res.sendFile(__dirname + '/public/video.html');
+});
 
 app.get('/tiktok', (req, res) => {
   res.sendFile(__dirname + '/public/tiktok.html');
