@@ -158,6 +158,9 @@ app.get('/ytmp4', (req, res) => {
 app.get('/play', (req, res) => {
   res.sendFile(__dirname + '/public/play.html');
 });
+app.get('/instagram', (req, res) => {
+  res.sendFile(__dirname + '/public/instagram.html');
+});
 app.get('/video', (req, res) => {
   res.sendFile(__dirname + '/public/video.html');
 });
