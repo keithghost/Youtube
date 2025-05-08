@@ -23,6 +23,10 @@ app.get('/quran', (req, res) => {
 app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
+app.get('/bing-search', (req, res) => {
+  res.sendFile(__dirname + '/public/bing-search.html');
+});
+
 app.get('/spotify-search', (req, res) => {
   res.sendFile(__dirname + '/public/spotify-search.html');
 });
