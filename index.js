@@ -22,6 +22,10 @@ app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
 
+app.get('/youtube-search', (req, res) => {
+  res.sendFile(__dirname + '/public/youtube-search.html');
+});
+
 app.get('/bible', (req, res) => {
   res.sendFile(__dirname + '/public/bible.html');
 });
