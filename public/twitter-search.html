@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keith's Premium Twitter Search</title>
+    <title>Twitter/X Search</title>
     <meta name="description" content="Search Twitter/X posts with beautiful premium interface">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -394,12 +394,12 @@
             <div class="logo">
                 <i class="fab fa-twitter"></i>
                 <div>
-                    Keith's Twitter Search
-                    <span>Premium X/Twitter search</span>
+                    Twitter/X Search
+                    <span>Search any Twitter/X posts</span>
                 </div>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" id="search-input" placeholder="Search Twitter posts..." value="keithkeizzah">
+                <input type="text" class="search-input" id="search-input" placeholder="Search Twitter posts...">
                 <button class="search-btn" id="search-btn">
                     <i class="fas fa-search"></i> Search
                 </button>
@@ -412,7 +412,7 @@
             <div class="results-header">
                 <div>
                     <h2 class="results-title">Search Results</h2>
-                    <div class="results-count" id="results-count">7 tweets found</div>
+                    <div class="results-count" id="results-count">Enter a search term</div>
                 </div>
             </div>
             
@@ -451,7 +451,7 @@
                 <a href="#"><i class="fab fa-github"></i></a>
             </div>
             <div class="copyright">
-                &copy; 2023 Keith's Twitter Search. All rights reserved.
+                &copy; 2023 Twitter/X Search. All rights reserved.
             </div>
         </div>
     </footer>
@@ -466,94 +466,6 @@
             const tweetsContainer = document.getElementById('tweets-container');
             const resultsCount = document.getElementById('results-count');
             const emptyState = document.getElementById('empty-state');
-            
-            // Sample data (replace with your API data)
-            const sampleData = {
-                "status": true,
-                "creator": "Keithkeizzah",
-                "result": [
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@PeninahMalonza_ go back to your families😂",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["PeninahMalonza_"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@Spanner_Ke @keithkeizzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["Spanner_Ke", "keithkeizzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@RealOwoyinka @keithkeizzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["RealOwoyinka", "keithkeizzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@1806patrick @keithkeizzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["1806patrick", "keithkeizzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@miky_choco @keithkezzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["miky_choco", "keithkezzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@TweetBymusa @keithkezzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["TweetBymusa", "keithkezzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    },
-                    {
-                        "username": "keithkeizzah",
-                        "profileImage": "https://pbs.twimg.com/profile_images/1807505662902980609/uio0igz5.jpg",
-                        "content": {
-                            "text": "@SalimoAnne @keithkezzah",
-                            "url": "https://x.com/keithkeizzah"
-                        },
-                        "userProfileUrl": "https://x.com/keithkeizzah",
-                        "mentions": ["SalimoAnne", "keithkezzah"],
-                        "createdAt": "2025-05-08T18:47:54.565Z"
-                    }
-                ]
-            };
-            
-            // Initial load
-            displayResults(sampleData);
             
             // Event Listeners
             searchBtn.addEventListener('click', function() {
@@ -575,34 +487,36 @@
             });
             
             // Functions
-            function searchTwitter(query) {
+            async function searchTwitter(query) {
                 loading.style.display = 'block';
                 error.style.display = 'none';
                 emptyState.style.display = 'none';
+                tweetsContainer.innerHTML = '';
+                resultsCount.textContent = 'Searching...';
                 
-                // In a real implementation, you would fetch from your API
-                // const apiUrl = `https://apis-keith.vercel.app/search/tweet-posts?q=${query}`;
-                
-                // For this example, we'll use a timeout to simulate API call
-                setTimeout(() => {
-                    // In a real implementation, you would use the API response
-                    // fetch(apiUrl)
-                    //     .then(response => response.json())
-                    //     .then(data => displayResults(data))
-                    //     .catch(err => showError(err.message));
+                try {
+                    const apiUrl = `https://apis-keith.vercel.app/search/tweet-posts?q=${encodeURIComponent(query)}`;
+                    const response = await fetch(apiUrl);
                     
-                    // For this example, we'll use the sample data
-                    displayResults(sampleData);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch tweets');
+                    }
+                    
+                    const data = await response.json();
+                    
+                    if (!data.status || !data.result || data.result.length === 0) {
+                        showEmptyState();
+                    } else {
+                        displayResults(data);
+                    }
+                } catch (err) {
+                    showError(err.message || 'Failed to fetch tweets. Please try again.');
+                } finally {
                     loading.style.display = 'none';
-                }, 1000);
+                }
             }
             
             function displayResults(data) {
-                if (!data.status || !data.result || data.result.length === 0) {
-                    showEmptyState();
-                    return;
-                }
-                
                 resultsCount.textContent = `${data.result.length} tweets found`;
                 tweetsContainer.innerHTML = '';
                 
@@ -619,7 +533,7 @@
                     tweetCard.innerHTML = `
                         <div class="tweet-header">
                             <div class="tweet-avatar">
-                                <img src="${tweet.profileImage}" alt="${tweet.username}">
+                                <img src="${tweet.profileImage}" alt="${tweet.username}" onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'">
                             </div>
                             <div class="tweet-user">
                                 <div class="tweet-username">
@@ -669,7 +583,7 @@
                 error.textContent = message;
                 error.style.display = 'block';
                 tweetsContainer.innerHTML = '';
-                resultsCount.textContent = '0 tweets found';
+                resultsCount.textContent = 'Error occurred';
                 emptyState.style.display = 'none';
             }
             
