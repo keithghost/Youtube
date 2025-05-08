@@ -18,6 +18,10 @@ app.get('/download', (req, res) => {
   res.sendFile(__dirname + '/public/download.html');
 });
 
+app.get('/image-search', (req, res) => {
+  res.sendFile(__dirname + '/public/image-search.html');
+});
+
 app.get('/bible', (req, res) => {
   res.sendFile(__dirname + '/public/bible.html');
 });
