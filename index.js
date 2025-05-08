@@ -21,6 +21,9 @@ app.get('/download', (req, res) => {
 app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
+app.get('/tiktok-trend-search', (req, res) => {
+  res.sendFile(__dirname + '/public/tiktok-trend-search.html');
+});
 
 app.get('/youtube-search', (req, res) => {
   res.sendFile(__dirname + '/public/youtube-search.html');
