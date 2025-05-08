@@ -17,7 +17,9 @@ app.get('/', (req, res) => {
 app.get('/download', (req, res) => {
   res.sendFile(__dirname + '/public/download.html');
 });
-
+app.get('/quran', (req, res) => {
+  res.sendFile(__dirname + '/public/quran.html');
+});
 app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
