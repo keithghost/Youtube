@@ -669,9 +669,41 @@
                             `;
                             
                             // Add download functionality
-                            downloadBtn.addEventListener('click', (e) => {
+                            downloadBtn.addEventListener('click', async (e) => {
                                 e.stopPropagation();
-                                downloadVideo(video.media.noWatermark, `${video.id}.mp4`);
+                                downloadBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Downloading...`;
+                                downloadBtn.disabled = true;
+                                
+                                try {
+                                    // Fetch the video with CORS proxy if needed
+                                    const videoUrl = video.media.noWatermark;
+                                    const response = await fetch(videoUrl);
+                                    
+                                    if (!response.ok) {
+                                        throw new Error('Failed to fetch video');
+                                    }
+                                    
+                                    // Create blob from response
+                                    const blob = await response.blob();
+                                    const url = window.URL.createObjectURL(blob);
+                                    
+                                    // Create download link and trigger click
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = `tiktok-${video.id}.mp4`;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    
+                                    // Clean up
+                                    window.URL.revokeObjectURL(url);
+                                    document.body.removeChild(a);
+                                } catch (err) {
+                                    showError('Failed to download video. Please try again.');
+                                    console.error('Download error:', err);
+                                } finally {
+                                    downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download`;
+                                    downloadBtn.disabled = false;
+                                }
                             });
                             
                             // Assemble the stats
@@ -751,15 +783,6 @@
                     return (num / 1000).toFixed(1) + 'K';
                 }
                 return num.toString();
-            }
-            
-            function downloadVideo(url, filename) {
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
             }
             
             function showError(message) {
