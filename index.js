@@ -23,6 +23,12 @@ app.get('/quran', (req, res) => {
 app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
+app.get('/spotify-search', (req, res) => {
+  res.sendFile(__dirname + '/public/spotify-search.html');
+});
+app.get('/soundcloud-search', (req, res) => {
+  res.sendFile(__dirname + '/public/soundcloud-search.html');
+});
 app.get('/twitter-search', (req, res) => {
   res.sendFile(__dirname + '/public/twitter-search.html');
 });
