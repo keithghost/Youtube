@@ -17,6 +17,25 @@ app.get('/', (req, res) => {
 app.get('/download', (req, res) => {
   res.sendFile(__dirname + '/public/download.html');
 });
+
+app.get('/likee', (req, res) => {
+  res.sendFile(__dirname + '/public/likee.html');
+});
+
+
+app.get('/pinterest', (req, res) => {
+  res.sendFile(__dirname + '/public/pinterest.html');
+});
+
+
+app.get('/capcut', (req, res) => {
+  res.sendFile(__dirname + '/public/capcut.html');
+});
+
+app.get('/mediafire', (req, res) => {
+  res.sendFile(__dirname + '/public/mediafire.html');
+});
+
 app.get('/twitter', (req, res) => {
   res.sendFile(__dirname + '/public/twitter.html');
 });
