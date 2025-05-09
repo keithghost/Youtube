@@ -23,6 +23,25 @@ app.get('/apk', (req, res) => {
 app.get('/quran', (req, res) => {
   res.sendFile(__dirname + '/public/quran.html');
 });
+app.get('/blackbox', (req, res) => {
+  res.sendFile(__dirname + '/public/blackbox.html');
+});
+
+app.get('/ilama', (req, res) => {
+  res.sendFile(__dirname + '/public/ilama.html');
+});
+
+app.get('/catgpt', (req, res) => {
+  res.sendFile(__dirname + '/public/catgpt.html');
+});
+app.get('/gemini', (req, res) => {
+  res.sendFile(__dirname + '/public/gemini.html');
+});
+
+app.get('/bard', (req, res) => {
+  res.sendFile(__dirname + '/public/bard.html');
+});
+
 app.get('/image-search', (req, res) => {
   res.sendFile(__dirname + '/public/image-search.html');
 });
