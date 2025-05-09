@@ -21,6 +21,9 @@ app.get('/twitter', (req, res) => {
   res.sendFile(__dirname + '/public/twitter.html');
 });
 
+app.get('/education-ai', (req, res) => {
+  res.sendFile(__dirname + '/public/education-ai.html');
+});
 
 app.get('/wallpaper2', (req, res) => {
   res.sendFile(__dirname + '/public/wallpaper2.html');
