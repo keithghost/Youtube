@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
 app.get('/download', (req, res) => {
   res.sendFile(__dirname + '/public/download.html');
 });
+
+app.get('/wallpaper2', (req, res) => {
+  res.sendFile(__dirname + '/public/wallpaper2.html');
+});
 app.get('/apk', (req, res) => {
   res.sendFile(__dirname + '/public/apk.html');
 });
