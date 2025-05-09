@@ -18,6 +18,23 @@ app.get('/download', (req, res) => {
   res.sendFile(__dirname + '/public/download.html');
 });
 
+app.get('/url-code', (req, res) => {
+  res.sendFile(__dirname + '/public/url-code.html');
+});
+
+
+app.get('/color', (req, res) => {
+  res.sendFile(__dirname + '/public/color.html');
+});
+
+app.get('/run-js', (req, res) => {
+  res.sendFile(__dirname + '/public/run-js.html');
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(__dirname + '/public/contact.html');
+});
+
 app.get('/likee', (req, res) => {
   res.sendFile(__dirname + '/public/likee.html');
 });
