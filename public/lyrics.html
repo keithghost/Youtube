@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Find lyrics for your favorite songs with our premium lyrics search engine">
-    <meta name="keywords" content="lyrics, song lyrics, music, lyrics finder">
-    <meta name="author" content="Your Name">
-    <meta property="og:title" content="Premium Lyrics Finder">
-    <meta property="og:description" content="The most advanced lyrics search tool available">
-    <meta property="og:type" content="website">
     <title>Keith Lyrics Finder | Find Any Song Lyrics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,16 +37,10 @@
             --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -69,7 +58,7 @@
             padding: 2rem 1.5rem;
         }
 
-        /* Header Styles */
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -81,7 +70,6 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 0.5rem;
             font-weight: 700;
-            line-height: 1.2;
         }
 
         .subtitle {
@@ -111,11 +99,6 @@
         }
 
         /* Search Section */
-        .search-section {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
         .search-container {
             display: flex;
             margin-bottom: 1.5rem;
@@ -123,12 +106,12 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
 
         .search-container:focus-within {
             box-shadow: 0 10px 30px rgba(67, 97, 238, 0.2);
-            border-color: var(--primary-color);
         }
 
         #search-input {
@@ -139,7 +122,6 @@
             outline: none;
             background-color: var(--light-color);
             color: var(--text-color);
-            transition: var(--transition);
         }
 
         #search-input::placeholder {
@@ -169,7 +151,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .recent-search {
@@ -191,29 +173,17 @@
             background-color: var(--light-color);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 2.5rem;
+            padding: 2rem;
             display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            margin-bottom: 2rem;
-        }
-
-        .results-container.show {
-            opacity: 1;
-            transform: translateY(0);
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
 
         .song-header {
             display: flex;
             align-items: center;
-            margin-bottom: 2rem;
             gap: 2rem;
-        }
-
-        .thumbnail-container {
-            position: relative;
-            flex-shrink: 0;
+            margin-bottom: 2rem;
         }
 
         .thumbnail {
@@ -221,98 +191,41 @@
             height: 150px;
             object-fit: cover;
             border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .play-btn {
-            position: absolute;
-            bottom: -15px;
-            right: -15px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
-            transition: var(--transition);
-            border: none;
-        }
-
-        .play-btn:hover {
-            background-color: var(--primary-dark);
-            transform: scale(1.1);
-        }
-
-        .song-info {
-            flex: 1;
         }
 
         .song-info h2 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
-            font-size: 1.8rem;
         }
 
         .song-info p {
             color: var(--text-light);
-            font-weight: 300;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .song-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .lyrics-container {
-            position: relative;
         }
 
         .lyrics {
             white-space: pre-line;
             line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .lyrics-actions {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .action-btn {
             background-color: rgba(67, 97, 238, 0.1);
             color: var(--primary-color);
             border: none;
-            padding: 0.5rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: var(--border-radius);
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
-            font-size: 0.9rem;
         }
 
         .action-btn:hover {
@@ -333,17 +246,12 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: var(--text-light);
-            font-size: 1.1rem;
         }
 
         /* Error State */
@@ -356,27 +264,15 @@
             margin-bottom: 2rem;
             display: none;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .error.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            margin: 0 auto 2rem;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 3rem;
             color: var(--text-light);
-            font-size: 0.9rem;
-            padding: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
@@ -397,100 +293,60 @@
             color: var(--primary-color);
         }
 
-        /* Audio Player */
-        .audio-player {
-            width: 100%;
-            margin-top: 2rem;
+        /* Song Selection */
+        .song-selection {
             display: none;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem 1rem;
-            }
+        .song-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 0.5rem;
+        }
 
+        .song-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .song-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .song-item-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .song-item-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
             .song-header {
                 flex-direction: column;
                 text-align: center;
-                gap: 1.5rem;
             }
-
-            .thumbnail-container {
-                margin-bottom: 1rem;
-            }
-
-            .song-info {
-                text-align: center;
-            }
-
-            .song-meta {
-                justify-content: center;
-            }
-
-            .results-container {
-                padding: 1.5rem;
-            }
-
+            
             .theme-toggle {
                 position: relative;
                 right: auto;
                 margin-bottom: 1rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            .search-container {
-                flex-direction: column;
-            }
-
-            #search-btn {
-                padding: 1rem;
-                justify-content: center;
-            }
-
+            
             .lyrics-actions {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .action-btn {
-                justify-content: center;
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            body {
-                background-color: white;
-                color: black;
-                font-size: 12pt;
-            }
-
-            .container {
-                padding: 0;
-                max-width: 100%;
-            }
-
-            header, .search-section, .theme-toggle, footer, .lyrics-actions, .play-btn {
-                display: none;
-            }
-
-            .results-container {
-                display: block !important;
-                box-shadow: none;
-                padding: 0;
-                page-break-inside: avoid;
-            }
-
-            .song-header {
-                page-break-after: avoid;
-            }
-
-            .lyrics {
-                white-space: pre-line;
-                font-size: 12pt;
-                line-height: 1.5;
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -502,12 +358,12 @@
                 <i class="fas fa-moon"></i>
             </button>
             <h1>Keith Lyrics Finder</h1>
-            <p class="subtitle">Discover the lyrics to any song with our powerful search engine</p>
+            <p class="subtitle">Find lyrics for any song instantly</p>
         </header>
 
         <section class="search-section">
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Enter song title or artist..." autocomplete="off" aria-label="Search for lyrics">
+                <input type="text" id="search-input" placeholder="Search for a song or artist..." autocomplete="off">
                 <button id="search-btn">
                     <i class="fas fa-search"></i> Search
                 </button>
@@ -524,39 +380,26 @@
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p class="loading-text">Searching our extensive lyrics database...</p>
+            <p>Searching for lyrics...</p>
+        </div>
+
+        <div class="song-selection" id="song-selection">
+            <!-- Song selection options will appear here -->
         </div>
 
         <div class="results-container" id="results">
             <div class="song-header">
-                <div class="thumbnail-container">
-                    <img id="thumbnail" class="thumbnail" src="" alt="Song thumbnail">
-                    <button class="play-btn" id="play-btn" aria-label="Play song preview">
-                        <i class="fas fa-play"></i>
-                    </button>
-                </div>
+                <img id="thumbnail" class="thumbnail" src="" alt="Song thumbnail">
                 <div class="song-info">
                     <h2 id="song-title">Song Title</h2>
                     <p id="artist-name">Artist Name</p>
-                    <div class="song-meta">
-                        <span class="meta-item">
-                            <i class="far fa-clock"></i> <span id="song-duration">--:--</span>
-                        </span>
-                        <span class="meta-item">
-                            <i class="fas fa-calendar-alt"></i> <span id="song-year">----</span>
-                        </span>
-                    </div>
                 </div>
             </div>
-
-            <audio controls class="audio-player" id="audio-player">
-                Your browser does not support the audio element.
-            </audio>
 
             <div class="lyrics-container">
                 <div class="lyrics-actions">
                     <button class="action-btn" id="copy-lyrics">
-                        <i class="far fa-copy"></i> Copy Lyrics
+                        <i class="far fa-copy"></i> Copy
                     </button>
                     <button class="action-btn" id="print-lyrics">
                         <i class="fas fa-print"></i> Print
@@ -572,12 +415,10 @@
         <footer>
             <div class="footer-links">
                 <a href="#" class="footer-link">About</a>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy</a>
                 <a href="#" class="footer-link">Contact</a>
             </div>
-            <p>© <span id="current-year"></span> Premium Lyrics Finder. All rights reserved.</p>
-            <p>Powered by <a href="https://apis-keith.vercel.app" target="_blank" class="footer-link">Keithkeizzah API</a> and other data sources</p>
+            <p>© <span id="current-year"></span> Keith Lyrics Finder. Powered by <a href="https://apis-keith.vercel.app" class="footer-link">Keith API</a></p>
         </footer>
     </div>
 
@@ -591,6 +432,7 @@
             const errorMessage = document.getElementById('error-message');
             const errorText = document.getElementById('error-text');
             const recentSearchesContainer = document.getElementById('recent-searches');
+            const songSelection = document.getElementById('song-selection');
             const themeToggle = document.querySelector('.theme-toggle');
             
             // Song info elements
@@ -598,10 +440,6 @@
             const artistName = document.getElementById('artist-name');
             const lyrics = document.getElementById('lyrics');
             const thumbnail = document.getElementById('thumbnail');
-            const playBtn = document.getElementById('play-btn');
-            const audioPlayer = document.getElementById('audio-player');
-            const songDuration = document.getElementById('song-duration');
-            const songYear = document.getElementById('song-year');
             
             // Action buttons
             const copyLyricsBtn = document.getElementById('copy-lyrics');
@@ -628,7 +466,6 @@
                 if (e.key === 'Enter') searchLyrics();
             });
             
-            playBtn.addEventListener('click', toggleAudioPlayback);
             copyLyricsBtn.addEventListener('click', copyLyricsToClipboard);
             printLyricsBtn.addEventListener('click', printLyrics);
             shareLyricsBtn.addEventListener('click', shareLyrics);
@@ -651,8 +488,8 @@
                 // Show loading state
                 loading.style.display = 'block';
                 resultsContainer.style.display = 'none';
-                errorMessage.classList.remove('show');
-                audioPlayer.style.display = 'none';
+                songSelection.style.display = 'none';
+                errorMessage.style.display = 'none';
                 
                 try {
                     const response = await fetch(`https://apis-keith.vercel.app/search/lyrics?query=${encodeURIComponent(query)}`);
@@ -665,8 +502,12 @@
                     
                     loading.style.display = 'none';
                     
-                    if (data.status && data.result) {
-                        displayResults(data.result);
+                    if (data.status && data.result && data.result.length > 0) {
+                        if (data.result.length > 1) {
+                            showSongSelection(data.result);
+                        } else {
+                            displayResults(data.result[0]);
+                        }
                     } else {
                         showError('No lyrics found for this song. Try being more specific.');
                     }
@@ -677,23 +518,46 @@
                 }
             }
             
+            // Show song selection when multiple results are found
+            function showSongSelection(songs) {
+                songSelection.innerHTML = '';
+                songSelection.style.display = 'block';
+                
+                songs.forEach(song => {
+                    const songItem = document.createElement('div');
+                    songItem.className = 'song-item';
+                    songItem.innerHTML = `
+                        <img src="${song.thumbnail}" alt="${song.song}">
+                        <div class="song-item-info">
+                            <h3>${song.song}</h3>
+                            <p>${song.artist}</p>
+                        </div>
+                    `;
+                    
+                    songItem.addEventListener('click', () => {
+                        displayResults(song);
+                        songSelection.style.display = 'none';
+                    });
+                    
+                    songSelection.appendChild(songItem);
+                });
+            }
+            
             // Display results function
             function displayResults(result) {
                 songTitle.textContent = result.song || 'Unknown Title';
                 artistName.textContent = result.artist || 'Unknown Artist';
                 lyrics.textContent = result.lyrics || 'Lyrics not available for this song.';
-                thumbnail.src = result.thumbnail || 'https://via.placeholder.com/150';
-                thumbnail.alt = `${result.song} by ${result.artist} album art`;
                 
-                // Additional metadata (placeholder - you would implement actual metadata fetching)
-                songDuration.textContent = '03:45';
-                songYear.textContent = '2023';
+                if (result.thumbnail) {
+                    thumbnail.src = result.thumbnail;
+                    thumbnail.alt = `${result.song} by ${result.artist} album art`;
+                } else {
+                    thumbnail.src = 'https://via.placeholder.com/150';
+                }
                 
-                // Show results with animation
+                // Show results
                 resultsContainer.style.display = 'block';
-                setTimeout(() => {
-                    resultsContainer.classList.add('show');
-                }, 50);
                 
                 // Scroll to results
                 resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -702,7 +566,7 @@
             // Error handling
             function showError(message) {
                 errorText.textContent = message;
-                errorMessage.classList.add('show');
+                errorMessage.style.display = 'block';
             }
             
             // Theme functions
@@ -754,23 +618,6 @@
                 }
             }
             
-            // Audio player functions
-            function toggleAudioPlayback() {
-                // This is a placeholder - you would implement actual audio playback
-                // For now, we'll just toggle a demo state
-                if (audioPlayer.style.display === 'none' || audioPlayer.style.display === '') {
-                    audioPlayer.style.display = 'block';
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    // In a real implementation, you would set the audio source and play it
-                    // audioPlayer.src = 'path/to/audio.mp3';
-                    // audioPlayer.play();
-                } else {
-                    audioPlayer.style.display = 'none';
-                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    // audioPlayer.pause();
-                }
-            }
-            
             // Lyrics actions
             function copyLyricsToClipboard() {
                 navigator.clipboard.writeText(lyrics.textContent)
@@ -794,7 +641,7 @@
             async function shareLyrics() {
                 const shareData = {
                     title: `${songTitle.textContent} by ${artistName.textContent}`,
-                    text: lyrics.textContent.substring(0, 100) + '...', // First 100 chars
+                    text: lyrics.textContent.substring(0, 100) + '...',
                     url: window.location.href
                 };
                 
